@@ -18,12 +18,22 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+    
+    val dartDefines = mutableMapOf<String, String>()
+
+    if (project.hasProperty("dart-defines")) {
+        val dartDefinesProperty = project.property("dart-defines") as String
+        dartDefinesProperty.split(",").forEach { entry ->
+            val decoded = String(Base64.getDecoder().decode(entry), Charsets.UTF_8)
+            val pair = decoded.split("=")
+            if (pair.size == 2) {
+                dartDefines[pair[0]] = pair[1]
+            }
+        }
+    }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.birnamwood.flutter_base.flutter_base"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        applicationId = dartDefines["appId"] 
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
