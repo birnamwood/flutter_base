@@ -18,25 +18,25 @@ class _APIClient implements APIClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<String> test(String token) async {
+  Future<CreateUserResponse> createUser(CreateUserRequest req) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = token;
-    final _options = _setStreamType<String>(
+    final _data = req;
+    final _options = _setStreamType<CreateUserResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/test',
+            '/user',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<String>(_options);
-    late String _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late CreateUserResponse _value;
     try {
-      _value = _result.data!;
+      _value = CreateUserResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

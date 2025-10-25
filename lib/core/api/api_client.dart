@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_base/data/models/user.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_client.g.dart';
@@ -10,9 +11,7 @@ abstract class APIClient {
   /// [dio]を使用してAPIクライアントのインスタンスを作成します。
   factory APIClient(Dio dio) = _APIClient;
 
-  /// ユーザーのトークンを検証するAPIリクエストを送信します。
-  /// [token] 検証するトークン
-  /// 戻り値: トークン検証の結果を含む[UserVerifyResponse]
-  @POST('/test')
-  Future<String> test(@Body() String token);
+  /// ユーザーの登録リクエストを送信します。
+  @POST('/user')
+  Future<CreateUserResponse> createUser(@Body() CreateUserRequest req);
 }
