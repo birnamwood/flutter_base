@@ -1,1 +1,31 @@
 include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+    camel_case_types: error
+    constant_identifier_names: error
+    non_constant_identifier_names: error
+    library_prefixes: error
+    file_names: error
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  exclude:
+    - '**/*.g.dart' # 自動生成ファイルを除外
+linter:
+  rules:
+    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
+    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    always_use_package_imports: true
+    directives_ordering: true
+    avoid_print: true # print文の使用を避ける
+    prefer_const_constructors: true # constコンストラクタを優先
+    public_member_api_docs: true # 公開メンバーにドキュメントを追加
+    sort_constructors_first: true # コンストラクタを最初に配置
+    line-length: 120 # 折り返し文字数を100に設定
+    camel_case_types: true           # クラス名はキャメルケース（PascalCase）
+    constant_identifier_names: true # 定数名は全大文字＋アンダースコア
+    non_constant_identifier_names: true # 変数・メソッド名がlowerCamelCaseでないと警告
+    library_prefixes: true           # ライブラリ接頭辞もlowerCamelCase
+    file_names: true                 # ファイル名はsnake_caseで
