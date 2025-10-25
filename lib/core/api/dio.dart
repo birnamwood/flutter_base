@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_base/config/constants.dart';
+import 'package:flutter_base/config/environment.dart';
 import 'package:flutter_base/core/logging/logger.dart';
 
 /// Dioインスタンスを作成する関数です。
 /// ベースURL、タイムアウト、インターセプターを設定します。
 /// 戻り値: 設定済みのDioインスタンス
 Dio createDio() {
-  // TODO APIのベースURLを設定する
-  const String url = ""; // APIのベースURLを指定してください
+  const String url = baseUrl; // APIのベースURLを指定
   final Dio dio = Dio(
     BaseOptions(baseUrl: url, contentType: "application/json"),
   );
