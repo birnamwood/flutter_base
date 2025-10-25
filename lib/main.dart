@@ -4,5 +4,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(overrides: [], child: MyApp()));
+  runApp(const ProviderScope(overrides: [], child: MainApp()));
 }
